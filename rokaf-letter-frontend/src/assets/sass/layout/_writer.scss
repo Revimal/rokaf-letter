@@ -134,6 +134,8 @@
 
     @media (max-width: 1000px), (orientation: portrait) {
         .writer-form {
+            width: 90%;
+
             .writer-headerbox-wrap {
                 .postmark {
                     width: 34%;
@@ -161,6 +163,8 @@
 
     @media (max-width: 720px) {
         .writer-form {
+            width: 90%;
+
             .writer-headerbox-wrap {
                 .postmark {
                     width: 100%;

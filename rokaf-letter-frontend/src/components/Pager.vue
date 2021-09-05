@@ -141,6 +141,8 @@ type ImageObject = {url: string, desc: string, load: boolean, width: (number | u
         document.onreadystatechange = (): void => {
             if (document.readyState == "complete") {
                 this.renderAgain();
+                window.setTimeout(this.renderAgain, 2000);
+                window.setTimeout(this.renderAgain, 5000);
             }
         }
     }

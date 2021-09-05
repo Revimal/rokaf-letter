@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <Introduce msg="메인 화면"/>
+        <Introduce msg="편지 쓰기"/>
         <Writer/>
     </div>
 </template>

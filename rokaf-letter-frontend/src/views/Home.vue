@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <Introduce msg="업데이트"/>
+        <Introduce msg="메인 화면"/>
         <Pager/>
     </div>
 </template>

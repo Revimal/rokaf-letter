@@ -10,6 +10,9 @@ node_modules
 rokaf-letter-assets/
 rokaf-letter-backend/assets/
 
+# Public file
+rokaf-letter-backend/public
+
 # Lock files
 package-lock.json
 
