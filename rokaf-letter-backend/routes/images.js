@@ -59,7 +59,7 @@ router.put('/', function(req, res, next) {
 router.get('/', function(req, res, next) {
     couchdb.all(function(err, docinfo) {
         if (err) {
-            console.log(err);
+            console.err(err);
             res.sendStatus(500);
         }
         else {
@@ -83,7 +83,7 @@ router.post('/', function(req, res, next) {
     else {
         couchdb.save(req.body, function(err, doc) {
             if (err) {
-                console.log(err);
+                console.err(err);
                 res.sendStatus(500);
             }
             else {
@@ -96,7 +96,7 @@ router.post('/', function(req, res, next) {
 router.get('/:id', function(req, res, next) {
     couchdb.get(req.params.id, function(err, doc) {
         if (err) {
-            console.log(err);
+            console.err(err);
             res.sendStatus(500);
         }
         else {
@@ -120,13 +120,13 @@ router.delete('/:id', function(req, res, next) {
     else {
         couchdb.get(req.params.id, function(err, doc) {
             if (err) {
-                console.log(err);
+                console.err(err);
                 res.sendStatus(500);
             }
             else {
                 couchdb.remove(req.params.id, doc._rev, function(err, body) {
                     if (err) {
-                        console.log(err);
+                        console.err(err);
                         res.sendStatus(500);
                     }
                     else {
