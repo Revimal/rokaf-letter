@@ -4,7 +4,7 @@
 
 <template>
     <div class="writer">
-        <form class="writer-form">
+        <form class="writer-form" @submit.prevent="postLetter">
             <div class="writer-headerbox-wrap">
                 <textarea class="postmark"
                 name="postmark" v-model="postmark" :maxlength="namemax"
@@ -13,7 +13,7 @@
                 name="address" v-model="address" :maxlength="addrmax"
                 placeholder="답장 받을 주소" rows=1 required></textarea>
                 <div class="writer-sendmail-wrap">
-                    <button class="sendmail" @click.prevent="postLetter">POST</button>
+                    <button class="sendmail">POST</button>
                 </div>
                 <br>
             </div>
