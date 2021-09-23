@@ -59,7 +59,7 @@ router.put('/', function(req, res, next) {
 router.get('/', function(req, res, next) {
     couchdb.all(function(err, docinfo) {
         if (err) {
-            console.err(err);
+            console.error(err);
             res.sendStatus(500);
         }
         else {
@@ -74,7 +74,7 @@ router.get('/', function(req, res, next) {
             res.send(ids);
         }
     });
-});
+})
 
 router.post('/', function(req, res, next) {
     if (!authHTTPHeader(req)) {
@@ -83,7 +83,7 @@ router.post('/', function(req, res, next) {
     else {
         couchdb.save(req.body, function(err, doc) {
             if (err) {
-                console.err(err);
+                console.error(err);
                 res.sendStatus(500);
             }
             else {
@@ -96,7 +96,7 @@ router.post('/', function(req, res, next) {
 router.get('/:id', function(req, res, next) {
     couchdb.get(req.params.id, function(err, doc) {
         if (err) {
-            console.err(err);
+            console.error(err);
             res.sendStatus(500);
         }
         else {
@@ -120,13 +120,13 @@ router.delete('/:id', function(req, res, next) {
     else {
         couchdb.get(req.params.id, function(err, doc) {
             if (err) {
-                console.err(err);
+                console.error(err);
                 res.sendStatus(500);
             }
             else {
                 couchdb.remove(req.params.id, doc._rev, function(err, body) {
                     if (err) {
-                        console.err(err);
+                        console.error(err);
                         res.sendStatus(500);
                     }
                     else {
@@ -149,7 +149,7 @@ router.get(rcpath('/:url'), function(req, res, next) {
         res.set({'Content-Type' : 'image/png'});
         res.sendFile(file);
     }
-}),
+})
 
 router.post(rcpath('/:url'), function(req, res, next) {
     var file = path.join(config.resource, req.params.url);
@@ -168,7 +168,7 @@ router.post(rcpath('/:url'), function(req, res, next) {
             });
         }
     }
-}),
+})
 
 router.delete(rcpath('/:url'), function(req, res, next) {
     var file = path.join(config.resource, req.params.url);
