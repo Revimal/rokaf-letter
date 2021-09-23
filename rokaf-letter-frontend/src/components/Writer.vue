@@ -13,7 +13,7 @@
                 name="address" v-model="address" :maxlength="addrmax"
                 placeholder="답장 받을 주소" rows=1 required></textarea>
                 <div class="writer-sendmail-wrap">
-                    <button class="sendmail">POST</button>
+                    <button class="sendmail" @click.prevent="postLetter">POST</button>
                 </div>
                 <br>
             </div>
@@ -31,12 +31,15 @@
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
+import axios from 'axios';
 
 @Options({
     data: function(): unknown {
         return {
             namemax: 8,
             addrmax: 42,
+            address: "",
+            postmark: "",
             letterbox: "",
             lettermax: 1200,
             letterthresh: 100,
@@ -80,8 +83,35 @@ import { Options, Vue } from 'vue-class-component';
             return undefined;
         },
         validateLetter: function(value: string): string | undefined {
-            const blacklist = ['섹스'];
+            const blacklist = ['씨발'];
             return this.containsAny(value, blacklist);
+        },
+        postLetter: function(event: Event): void {
+            const date: Date = new Date();
+            const current: string =
+                date.toLocaleDateString() + " " + date.toLocaleTimeString();
+            const formatted: any = {
+                sent: false,
+                date: current,
+                name: this.postmark,
+                addr: this.address,
+                body: this.letterbox,
+            };
+            axios.post("/api/letter", formatted).then(
+                (res: any): void => {
+                    alert(
+                        "저장 완료!" + "\n" +
+                        "작성자: " + this.postmark +" \n" +
+                        "편지ID: " + res.data.id
+                    );
+                    this.postmark = "";
+                    this.address = "";
+                    this.letterbox = "";
+                }
+            ).catch(
+                (error: any): void => {
+                    alert("서버로 데이터 전송에 실패하였습니다!");
+            });
         }
     }
 })
